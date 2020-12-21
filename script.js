@@ -1,7 +1,8 @@
 const data = {
-  USD: {EUR: 0.82, GBP: 0.74},
-  EUR: {USD: 1.23, GBP: 0.91},
-  GBP: {USD: 1.35, EUR: 1.10},
+  USD: {EUR: 0.82, GBP: 0.74, BTC:0.000044},
+  EUR: {USD: 1.23, GBP: 0.91, BTC: 0.000054 },
+  GBP: {USD: 1.35, EUR: 1.10, BTC: 0.000059 }, 
+  BTC: {USD:2290.50, EUR: 18708.02, GBP:17013.47 }
 };
 
 const currencyKeys = Object.keys(data);
@@ -38,6 +39,11 @@ createCurrencyElements(currencyKeys, parentToEl, toInputName);
 
 const calculateButton = document.querySelector("#calculate-button");
 calculateButton.addEventListener("click", function(){
+
+
+const toTarget1 = document.querySelector("input[name='currency_to']:checked");
+const fromTarget1 = document.querySelector("input[name='currency_from']:checked")
+if((toTarget1 != null) && (fromTarget1 != null)){
    // kimden ceviriyourz
    const fromTarget = document.querySelector("input[name='currency_from']:checked").value;
    // kime ceviriyoruz
@@ -51,4 +57,17 @@ calculateButton.addEventListener("click", function(){
 
    const currencyResult = document.querySelector("#currency-result");
    currencyResult.innerHTML = amount + " " + fromTarget + " = " + result + " " + toTarget;
+   if(isNaN(result)){
+   currencyResult.innerHTML="Farklı kur seçiniz";
+}
+if(isNaN(amount)){
+   currencyResult.innerHTML="Sayı giriniz";
+}
+
+}
+else{
+  const currencyResult = document.querySelector("#currency-result");
+  currencyResult.innerHTML="seçim yapınız";
+}
+
 });
