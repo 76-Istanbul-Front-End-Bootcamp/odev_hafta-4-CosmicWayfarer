@@ -67,7 +67,7 @@ if(isNaN(amount)){
 }
 else{
   const currencyResult = document.querySelector("#currency-result");
-  currencyResult.innerHTML="seçim yapınız";
+  currencyResult.innerHTML="Seçim yapınız";
 }
 
 });
